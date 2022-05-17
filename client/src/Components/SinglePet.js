@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  useLocation,
-  useParams,
-  useNavigate,
-  Navigate,
-} from "react-router-dom";
+import { useLocation, useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -13,10 +8,10 @@ function SinglePet() {
   const { state } = useLocation();
   const [pet, setPet] = useState(state || {});
   const { id } = useParams();
+  const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
     if (id && !state) {
-      console.log("coming here");
       axios
         .get(`http://localhost:8000/api/pet/${id}`)
         .then((res) => {
@@ -46,18 +41,57 @@ function SinglePet() {
   };
 
   return (
-    <>
-      <div>
-        <p>Pet Name :{pet.name}</p>
-        <p>Pet description :{pet.description}</p>
-        <p>Pet Type : {pet.type}</p>
+    <div className="detailsBody">
+      <div className="nav">
+        <h1>Pet Shelter</h1>
+        <Link to="/" className="mx-5 px-5 pt-3">
+          back to home
+        </Link>
       </div>
-      <button onClick={() => navigate("/")}>home</button>
-      <button onClick={() => handleDelete(pet._id)}>Delete</button>
-      <button onClick={() => navigate(`/edit/${pet._id}`, { state: pet })}>
-        Update
-      </button>
-    </>
+
+      <div className="nav">
+        <h3>{`Details About : ${pet.name}`}</h3>
+        <button
+          className="bg-danger mt-0"
+          onClick={() => handleDelete(pet._id)}
+        >
+          <i className="bi bi-house-door-fill"></i>
+          Adopt {pet.name}
+        </button>
+      </div>
+
+      <div className=" details ">
+        <div>
+          <p className="names">Pet Type:</p>
+          <p className="answers">{pet.type}</p>
+        </div>
+        <div>
+          <p className="names">Pet Description:</p>
+          <p className="answers">{pet.description}</p>
+        </div>
+        <div>
+          <p className="names">Pet Skills:</p>
+          <div className="skills mt-0">
+            {pet.skills &&
+              pet.skills.map((skill, index) => {
+                return <p key={index}>{skill}</p>;
+              })}
+          </div>
+        </div>
+        <button
+          className="bg-success mb-5 p-2"
+          onClick={(e) => {
+            e.target.disabled = true;
+            e.target.classList.add("disableIt");
+            setLikeCount(likeCount + 1);
+          }}
+        >
+          <i className="bi bi-hand-thumbs-up-fill "></i>
+          Like {pet.name}
+        </button>
+        <span className="m-5"> {likeCount} like(s)</span>
+      </div>
+    </div>
   );
 }
 

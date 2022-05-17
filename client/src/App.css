@@ -5,9 +5,10 @@
   pointer-events: none;
   opacity: 0.5;
 }
-.bi {
+/* .bi {
   cursor: pointer;
-}
+  color: black;
+} */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -18,6 +19,7 @@ table {
   border: 2px solid black;
   width: 600px;
   table-layout: fixed;
+  font-size: large;
 }
 
 td {
@@ -30,7 +32,74 @@ td {
 }
 thead {
   background-color: rgb(228, 222, 222);
+  font-weight: 600;
 }
 tr:nth-of-type(2n) {
   background-color: rgb(183, 183, 175);
+}
+
+form {
+  border: 2px solid black;
+  width: 1000px;
+  padding: 20px;
+  margin-top: 30px;
+}
+input {
+  border: 2px solid black;
+  margin-bottom: 20px;
+  width: 300px;
+  margin-top: 6px;
+  padding: 10px;
+}
+label {
+  font-weight: 500;
+}
+button {
+  width: 200px;
+  padding: 10px;
+  font-size: large;
+  color: white;
+  margin-left: 100px;
+  margin-top: 20px;
+}
+i {
+  margin: 5px;
+}
+.body {
+  width: 1600px;
+  margin: auto;
+}
+.detailsBody {
+  width: 1000px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 40px;
+}
+.detailsBody .details {
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.details div {
+  margin: 20px;
+  display: flex;
+  font-size: large;
+}
+div .names {
+  width: 150px;
+  font-weight: 600;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+}
+
+.errors {
+  color: Red;
+}
+.links {
+  margin-right: 300px;
+  padding-top: 50px;
+  font-size: large;
 }

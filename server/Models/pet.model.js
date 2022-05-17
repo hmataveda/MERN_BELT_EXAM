@@ -25,15 +25,6 @@ const PetSchema = new mongoose.Schema(
       type: [String],
       validate: [(val) => val.length <= 3, `skills can contain up to 3 skills`],
     },
-    skill: {
-      type: [String],
-      //   required: [(value) => value.length > 0, "Any of the skill is required"],
-      // validate: [(val) => val.length , `skills can contain up to 1 skills`],
-      enum: {
-        values: ["good Player", "listner", "barker", "honesty", "all"],
-        message: "Skill must be either from above 3",
-      },
-    },
   },
   { timestamps: true }
 );
