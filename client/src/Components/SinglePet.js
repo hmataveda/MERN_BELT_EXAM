@@ -39,6 +39,20 @@ function SinglePet() {
         console.log("Getting error in Client Delete Pet", err);
       });
   };
+  const handleLike = (id) => {
+    axios
+      .put(`http://localhost:8000/api/pet/${id}`, {
+        ...pet,
+        likes: pet.likes + 1,
+      })
+      .then((res) => {
+        console.log("Updated the existing Pet", res.data);
+        setPet(res.data);
+      })
+      .catch((err) => {
+        console.log("Error in Liking", err);
+      });
+  };
 
   return (
     <div className="detailsBody">
@@ -83,13 +97,13 @@ function SinglePet() {
           onClick={(e) => {
             e.target.disabled = true;
             e.target.classList.add("disableIt");
-            setLikeCount(likeCount + 1);
+            handleLike(pet._id);
           }}
         >
           <i className="bi bi-hand-thumbs-up-fill "></i>
           Like {pet.name}
         </button>
-        <span className="m-5"> {likeCount} like(s)</span>
+        <span className="m-5"> {pet.likes} like(s)</span>
       </div>
     </div>
   );

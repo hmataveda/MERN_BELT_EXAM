@@ -25,6 +25,10 @@ const PetSchema = new mongoose.Schema(
       type: [String],
       validate: [(val) => val.length <= 3, `skills can contain up to 3 skills`],
     },
+    likes: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

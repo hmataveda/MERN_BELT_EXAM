@@ -45,7 +45,6 @@ module.exports = {
   },
 
   updatePetbyID: (req, res) => {
-    console.log("comin in put");
     Pet.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
